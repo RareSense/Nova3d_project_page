@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Nova3D: Code-Native Generation of Programmable 3D Assets</title>
+    <meta
+      name="description"
+      content="Nova3D research project page for code-native generation of programmable 3D assets."
+    >
+    <link rel="stylesheet" href="src/styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="lab-mark" href="#top" aria-label="Nova3D home">
+        <img class="brand-logo" src="assets/brand/nova3d-logo-header.png" alt="Nova3D">
+      </a>
+      <nav aria-label="Page navigation">
+        <a href="#abstract">Abstract</a>
+        <a href="#articulation">Articulation</a>
+        <a href="#pbr">PBR Textures</a>
+        <a href="#results">Results</a>
+        <a href="#comparison">Comparison</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <p class="venue">Project page</p>
+        <h1><span>Nova3D:</span> Code-Native Generation of Programmable 3D Assets</h1>
+        <p class="subtitle">
+          Generating structured, editable, constraint-consistent 3D assets as executable programs.
+        </p>
+        <div class="actions">
+          <a class="button primary" href="https://app.nova3d.xyz/">Open Nova3D App</a>
+          <a class="button" href="#results">Results</a>
+        </div>
+      </section>
+
+      <section class="card abstract-card" id="abstract" aria-labelledby="abstract-title">
+        <h2 id="abstract-title">Abstract</h2>
+        <p>
+          Current 3D generative models mostly produce a final surface: a visually strong but largely opaque mesh. Yet interactive 3D worlds need more than a surface — they need named parts, an assembly hierarchy, measurable constraints, local edit handles, and joints for articulation. We present Nova3D, a system that generates 3D assets as executable Blender source code; the compiled GLB is treated as the artifact, not the asset. Because the output is a program, semantic handles are present at generation time rather than recovered afterward by segmentation or rigging. We evaluate on Nova3D-Bench, a frozen, spec-grounded benchmark of 54 items across six domains and three difficulty levels with text and image inputs, and compare against commercial, open mesh-native, part-aware, post-hoc-segmentation, code-native, and CAD baselines. Nova3D produces an executable program and a valid artifact for 54/54 items; 100% of its assets expose a parent–child assembly tree, which the mesh-native, CAD, and segmentation baselines do not; it satisfies 51/52 frozen numeric and count constraints (no baseline exceeds 21%); and it passes 14/18 blinded local edits with locality preserved in 18/18. Its geometry is competitive — it wins the structured domains in a pairwise shape-quality tournament and is second only to the strongest mesh-native model — while it openly concedes texture realism to baked-PBR systems. The central result is representational: code-native generation turns a generated 3D object from an opaque surface into a programmable asset that downstream systems can inspect, measure, edit, and animate.
+        </p>
+      </section>
+
+      <section class="section overview-section" aria-labelledby="overview-title">
+        <div class="section-heading">
+          <h2 id="overview-title">From clean geometry to production-ready assets</h2>
+          <p>
+            Nova3D keeps generation inspectable across geometry, part separation, hierarchy, articulation,
+            and PBR textured output.
+          </p>
+        </div>
+        <figure class="overview-figure">
+          <img
+            src="assets/figures/generation-overview.png"
+            alt="Nova3D overview showing clean base geometry, normal pass, part separation, editable mesh geometry, hierarchy for articulation, and PBR textured output"
+          >
+        </figure>
+      </section>
+
+      <section class="section articulation-section" id="articulation" aria-labelledby="articulation-title">
+        <article class="articulation-card">
+          <div>
+            <p class="kicker">Articulation</p>
+            <h2 id="articulation-title">Robotic hand articulation preview</h2>
+            <p>
+              Joint-aware assets can expose editable motion handles while preserving the original generated geometry.
+            </p>
+          </div>
+          <video
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="auto"
+            data-autoplay-video
+            data-start-time="0.8"
+            poster="assets/figures/articulation-robotic-hand.jpg"
+            src="assets/figures/articulation-robotic-hand.mp4"
+          ></video>
+        </article>
+      </section>
+
+      <section class="section pbr-section" id="pbr" aria-labelledby="pbr-title">
+        <article class="articulation-card">
+          <div>
+            <p class="kicker">PBR Textures</p>
+            <h2 id="pbr-title">Textured G-Wagon preview</h2>
+            <p>
+              Physically based material previews show how generated assets can carry richer surface detail while
+              retaining an inspectable asset structure.
+            </p>
+          </div>
+          <video
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="auto"
+            data-autoplay-video
+            data-start-time="0.8"
+            poster="assets/figures/pbr-textured-g-wagon.jpg"
+            src="assets/figures/pbr-textured-g-wagon.mp4"
+          ></video>
+        </article>
+      </section>
+
+      <section class="section" id="results" aria-labelledby="results-title">
+        <div class="section-heading">
+          <p class="kicker">Results</p>
+          <h2 id="results-title">Generated asset gallery</h2>
+          <p>
+            Selected generated assets with on-card turntable previews.
+          </p>
+        </div>
+        <div class="asset-grid" id="asset-grid" aria-live="polite"></div>
+      </section>
+
+      <section class="app-cta" aria-label="Nova3D app link">
+        <div>
+          <p class="kicker">Try it</p>
+          <h2>Open the Nova3D app</h2>
+          <p>Generate, inspect, and export structured 3D assets directly from the hosted Nova3D app.</p>
+        </div>
+        <a class="button primary" href="https://app.nova3d.xyz/">Launch app</a>
+      </section>
+
+      <section class="section" id="comparison" aria-labelledby="comparison-title">
+        <div class="section-heading">
+          <p class="kicker">Comparison</p>
+          <h2 id="comparison-title">Visual comparison</h2>
+          <p>
+            Side-by-side textured and wireframe outputs for the same object categories.
+          </p>
+        </div>
+
+        <div class="comparison-stack">
+          <figure class="comparison-figure">
+            <img
+              src="assets/figures/comparison-textured.png"
+              alt="Textured renders comparing Nova3D with Meshy, TRELLIS.2, and TripoSG"
+            >
+            <figcaption>
+              Textured outputs shown side by side.
+            </figcaption>
+          </figure>
+
+          <figure class="comparison-figure">
+            <img
+              src="assets/figures/comparison-wireframe.png"
+              alt="Wireframe comparison of Nova3D with Meshy, TRELLIS.2, and TripoSG"
+            >
+            <figcaption>
+              Wireframe view showing topology and part-level structure.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <a href="#top">Top</a>
+      <span>Nova3D project page</span>
+      <a href="https://github.com/RareSense/Nova3D">RareSense/Nova3D</a>
+      <a href="https://nova3d.xyz/">nova3d.xyz</a>
+      <a href="https://app.nova3d.xyz/">Nova3D App</a>
+    </footer>
+
+    <script src="src/app.js"></script>
+  </body>
+</html>

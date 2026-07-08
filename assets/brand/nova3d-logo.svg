@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="188" height="54" viewBox="0 0 188 54" role="img" aria-labelledby="title">
+  <title id="title">Nova3D</title>
+  <defs>
+    <filter id="softGlow" x="-20%" y="-30%" width="140%" height="160%">
+      <feGaussianBlur stdDeviation="0.85" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <pattern id="ledFill" width="6" height="7" patternUnits="userSpaceOnUse">
+      <rect x="1" y="1" width="3" height="5" rx="1" fill="#7fc67d"/>
+      <rect x="4.5" y="1" width="0.8" height="5" rx="0.4" fill="#315f34"/>
+    </pattern>
+  </defs>
+  <rect width="188" height="54" rx="2" fill="#050805"/>
+  <text
+    x="14"
+    y="37"
+    fill="#17391c"
+    font-family="Consolas, 'Courier New', monospace"
+    font-size="33"
+    font-weight="700"
+    letter-spacing="1"
+  >NOVA3D</text>
+  <text
+    x="14"
+    y="37"
+    fill="url(#ledFill)"
+    filter="url(#softGlow)"
+    font-family="Consolas, 'Courier New', monospace"
+    font-size="33"
+    font-weight="700"
+    letter-spacing="1"
+  >NOVA3D</text>
+</svg>
