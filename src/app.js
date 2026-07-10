@@ -1,10 +1,5 @@
 const showcaseItems = [
   {
-    title: "Camera",
-    description: "Compact hard-surface asset with addressable body, lens, and control elements.",
-    media: "assets/showcase/camera.mp4"
-  },
-  {
     title: "Chair",
     description: "Furniture example with separable seat, back, legs, and support structure.",
     media: "assets/showcase/chair.mp4"
@@ -23,11 +18,6 @@ const showcaseItems = [
     title: "Full Computer Set",
     description: "Multi-object desk setup with monitor, keyboard, accessories, and grouped parts.",
     media: "assets/showcase/full-computer-set.mp4"
-  },
-  {
-    title: "Futuristic Car",
-    description: "Vehicle asset with recognizable chassis, wheels, and layered body panels.",
-    media: "assets/showcase/futuristic-car.mp4"
   },
   {
     title: "NVIDIA Blue Asset",

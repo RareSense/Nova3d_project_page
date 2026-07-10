@@ -108,9 +108,10 @@ pre {
 }
 
 main {
-  width: min(1260px, calc(100% - 40px));
-  margin: 0 auto 42px;
+  width: min(1640px, calc(100% - 40px));
+  margin: 26px auto 42px;
   padding: 0 clamp(18px, 4vw, 40px) 34px;
+  border-radius: 22px;
   background: var(--surface);
   color: var(--panel-ink);
   box-shadow: 0 28px 80px rgba(0, 0, 0, 0.28);
@@ -118,6 +119,7 @@ main {
 
 .hero {
   padding: 64px 0 34px;
+  text-align: center;
 }
 
 .venue,
@@ -137,6 +139,7 @@ p {
 
 h1 {
   max-width: 860px;
+  margin-inline: auto;
   margin-bottom: 18px;
   font-size: clamp(31px, 4.6vw, 52px);
   line-height: 1.08;
@@ -166,6 +169,7 @@ p {
 
 .subtitle {
   max-width: 760px;
+  margin-inline: auto;
   color: #3d443b;
   font-size: 19px;
 }
@@ -178,6 +182,7 @@ p {
 .actions {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 10px;
 }
 
@@ -206,6 +211,136 @@ p {
   border-color: var(--green-dark);
 }
 
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0 0 20px;
+  padding: 7px 16px;
+  border: 1px solid #24312a;
+  border-radius: 999px;
+  background: #101619;
+  color: #9fe8bb;
+  font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+  font-size: 12.5px;
+  letter-spacing: 0.05em;
+}
+
+.hero-badge span {
+  color: var(--amber);
+  font-weight: 700;
+}
+
+/* ---------- code-native section ---------- */
+
+.code-native-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) auto minmax(0, 1fr);
+  gap: 20px;
+  align-items: center;
+  max-width: 1360px;
+  margin: 0 auto;
+}
+
+.code-card {
+  margin: 0;
+  border: 1px solid #22313a;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #0e1418;
+  box-shadow: var(--panel-shadow);
+  text-align: left;
+}
+
+.code-card figcaption {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 11px 16px;
+  border-bottom: 1px solid #1c262c;
+  background: #121a1f;
+  color: #8fa39a;
+  font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+  font-size: 12px;
+}
+
+.code-card .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.code-card .dot:nth-child(1) { background: #e5484d; }
+.code-card .dot:nth-child(2) { background: #d0aa5b; }
+.code-card .dot:nth-child(3) { background: #4d7655; margin-right: 8px; }
+
+.code-card pre {
+  margin: 0;
+  padding: 18px 22px;
+  overflow-x: auto;
+  color: #d7e4da;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.tk-c { color: #5f6f66; font-style: italic; }
+.tk-k { color: #7ddba3; font-weight: 700; }
+.tk-f { color: #74b6e8; }
+.tk-s { color: #d8b571; }
+.tk-n { color: #c79bf2; }
+
+.compile-arrow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: var(--panel-muted);
+  font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+  font-size: 12px;
+}
+
+.compile-arrow b {
+  font-size: 30px;
+  line-height: 1;
+  color: var(--green-dark);
+}
+
+.code-result {
+  margin: 0;
+  padding: 14px;
+  border: 1px solid var(--panel-line);
+  border-radius: 12px;
+  background: var(--card);
+  box-shadow: var(--panel-shadow);
+}
+
+.code-result video {
+  width: 100%;
+  border-radius: 8px;
+  background: #f6f8f4;
+}
+
+.code-result figcaption {
+  margin-top: 10px;
+  color: var(--panel-muted);
+  font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+  font-size: 12px;
+  text-align: center;
+}
+
+.hero-teaser {
+  max-width: 1100px;
+  margin: 42px auto 0;
+}
+
+.hero-teaser img {
+  width: 100%;
+  border: 1px solid var(--panel-line);
+  border-radius: 14px;
+  background: white;
+  box-shadow: var(--panel-shadow);
+}
+
 .card,
 .section {
   margin: 34px 0;
@@ -220,8 +355,13 @@ p {
   box-shadow: var(--panel-shadow);
 }
 
+.abstract-card {
+  text-align: center;
+}
+
 .abstract-card p {
-  max-width: 880px;
+  max-width: 1100px;
+  margin-inline: auto;
   color: var(--panel-muted);
 }
 
@@ -261,7 +401,9 @@ figcaption {
 
 .section-heading {
   max-width: 760px;
+  margin-inline: auto;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 .asset-grid {
@@ -456,8 +598,13 @@ figcaption {
 
   .asset-grid,
   .app-cta,
-  .articulation-card {
+  .articulation-card,
+  .code-native-grid {
     grid-template-columns: 1fr;
+  }
+
+  .compile-arrow b {
+    transform: rotate(90deg);
   }
 
   .app-cta {

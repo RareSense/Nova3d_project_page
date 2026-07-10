@@ -17,6 +17,7 @@
       </a>
       <nav aria-label="Page navigation">
         <a href="#abstract">Abstract</a>
+        <a href="#code">Code</a>
         <a href="#articulation">Articulation</a>
         <a href="#pbr">PBR Textures</a>
         <a href="#results">Results</a>
@@ -26,7 +27,6 @@
 
     <main id="top">
       <section class="hero">
-        <p class="venue">Project page</p>
         <h1><span>Nova3D:</span> Code-Native Generation of Programmable 3D Assets</h1>
         <p class="subtitle">
           Generating structured, editable, constraint-consistent 3D assets as executable programs.
@@ -35,13 +35,57 @@
           <a class="button primary" href="https://app.nova3d.xyz/">Open Nova3D App</a>
           <a class="button" href="#results">Results</a>
         </div>
+        <figure class="hero-teaser">
+          <img src="assets/figures/b.gif" alt="Nova3D image-to-3D pipeline preview">
+        </figure>
       </section>
 
       <section class="card abstract-card" id="abstract" aria-labelledby="abstract-title">
         <h2 id="abstract-title">Abstract</h2>
         <p>
-          Current 3D generative models mostly produce a final surface: a visually strong but largely opaque mesh. Yet interactive 3D worlds need more than a surface — they need named parts, an assembly hierarchy, measurable constraints, local edit handles, and joints for articulation. We present Nova3D, a system that generates 3D assets as executable Blender source code; the compiled GLB is treated as the artifact, not the asset. Because the output is a program, semantic handles are present at generation time rather than recovered afterward by segmentation or rigging. We evaluate on Nova3D-Bench, a frozen, spec-grounded benchmark of 54 items across six domains and three difficulty levels with text and image inputs, and compare against commercial, open mesh-native, part-aware, post-hoc-segmentation, code-native, and CAD baselines. Nova3D produces an executable program and a valid artifact for 54/54 items; 100% of its assets expose a parent–child assembly tree, which the mesh-native, CAD, and segmentation baselines do not; it satisfies 51/52 frozen numeric and count constraints (no baseline exceeds 21%); and it passes 14/18 blinded local edits with locality preserved in 18/18. Its geometry is competitive — it wins the structured domains in a pairwise shape-quality tournament and is second only to the strongest mesh-native model — while it openly concedes texture realism to baked-PBR systems. The central result is representational: code-native generation turns a generated 3D object from an opaque surface into a programmable asset that downstream systems can inspect, measure, edit, and animate.
+          Current 3D generative models mostly produce a final surface: a visually strong but largely opaque mesh. Yet interactive 3D worlds need more than a surface — they need named parts, an assembly hierarchy, measurable constraints, local edit handles, and joints for articulation. We present Nova3D, a system that generates 3D assets as executable source code; the compiled GLB is treated as the artifact, not the asset. Because the output is a program, semantic handles are present at generation time rather than recovered afterward by segmentation or rigging. We evaluate on Nova3D-Bench, a frozen, spec-grounded benchmark of 54 items across six domains and three difficulty levels with text and image inputs, and compare against commercial, open mesh-native, part-aware, post-hoc-segmentation, code-native, and CAD baselines. Nova3D produces an executable program and a valid artifact for 54/54 items; 100% of its assets expose a parent–child assembly tree, which the mesh-native, CAD, and segmentation baselines do not; it satisfies 51/52 frozen numeric and count constraints (no baseline exceeds 21%); and it passes 14/18 blinded local edits with locality preserved in 18/18. Its geometry is competitive — it wins the structured domains in a pairwise shape-quality tournament and is second only to the strongest mesh-native model — while it openly concedes texture realism to baked-PBR systems. The central result is representational: code-native generation turns a generated 3D object from an opaque surface into a programmable asset that downstream systems can inspect, measure, edit, and animate.
         </p>
+      </section>
+
+      <section class="section code-native-section" id="code" aria-labelledby="code-title">
+        <div class="section-heading">
+          <p class="kicker">Code-Native</p>
+          <h2 id="code-title">The asset is a program, not a mesh</h2>
+          <p>
+            Nova3D writes an executable program &mdash; named parts, real dimensions, and the
+            assembly tree exist in the source from the first token. The GLB is just the compiled artifact.
+          </p>
+        </div>
+        <div class="code-native-grid">
+          <figure class="code-card">
+            <figcaption>
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              fujifilm_camera.py &middot; generated by Nova3D
+            </figcaption>
+            <pre><code><span class="tk-k">from</span> nova3d.dsl <span class="tk-k">import</span> part, cylinder, box, parent_to, export_glb
+
+<span class="tk-c"># every object is named, measured, editable</span>
+body   = <span class="tk-f">part</span>(<span class="tk-s">"Camera_Body"</span>, <span class="tk-f">box</span>(w=<span class="tk-n">0.136</span>, h=<span class="tk-n">0.082</span>, d=<span class="tk-n">0.048</span>))
+mount  = <span class="tk-f">part</span>(<span class="tk-s">"Lens_Mount"</span>, <span class="tk-f">cylinder</span>(r=<span class="tk-n">0.024</span>, depth=<span class="tk-n">0.008</span>))
+barrel = <span class="tk-f">part</span>(<span class="tk-s">"Lens_Barrel"</span>, <span class="tk-f">cylinder</span>(r=<span class="tk-n">0.031</span>, depth=<span class="tk-n">0.062</span>))
+ring   = <span class="tk-f">part</span>(<span class="tk-s">"Focus_Ring"</span>, <span class="tk-f">cylinder</span>(r=<span class="tk-n">0.033</span>, depth=<span class="tk-n">0.011</span>))
+
+<span class="tk-f">parent_to</span>(body, [mount])                <span class="tk-c"># assembly tree</span>
+<span class="tk-f">parent_to</span>(mount, [barrel]); <span class="tk-f">parent_to</span>(barrel, [ring])
+
+<span class="tk-k">assert</span> barrel.r &lt; body.h / <span class="tk-n">2</span>            <span class="tk-c"># frozen constraint</span>
+
+<span class="tk-f">export_glb</span>(<span class="tk-s">"fujifilm_camera.glb"</span>)      <span class="tk-c"># compiled artifact</span></code></pre>
+          </figure>
+          <div class="compile-arrow" aria-hidden="true">
+            <span>nova3d compile</span>
+            <b>&#8594;</b>
+          </div>
+          <figure class="code-result">
+            <video autoplay muted loop playsinline preload="auto" src="assets/figures/camera-turntable.mp4"></video>
+            <figcaption>fujifilm_camera.glb &mdash; the compiled, inspectable artifact</figcaption>
+          </figure>
+        </div>
       </section>
 
       <section class="section overview-section" aria-labelledby="overview-title">
@@ -55,7 +99,7 @@
         <figure class="overview-figure">
           <img
             src="assets/figures/generation-overview.png"
-            alt="Nova3D overview showing clean base geometry, normal pass, part separation, editable mesh geometry, hierarchy for articulation, and PBR textured output"
+            alt="Nova3D overview showing clean base geometry, normal pass, part separation, exploded editable mesh geometry, parent-child assembly hierarchy, and PBR textured output"
           >
         </figure>
       </section>
