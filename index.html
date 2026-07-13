@@ -18,6 +18,7 @@
       <nav aria-label="Page navigation">
         <a href="#abstract">Abstract</a>
         <a href="#code">Code</a>
+        <a href="#any-model">Any Model</a>
         <a href="#articulation">Articulation</a>
         <a href="#pbr">PBR Textures</a>
         <a href="#results">Results</a>
@@ -94,6 +95,23 @@ ring   = <span class="tk-f">part</span>(<span class="tk-s">"Focus_Ring"</span>, 
             <figcaption>fujifilm_camera.glb &mdash; the compiled, inspectable artifact</figcaption>
           </figure>
         </div>
+      </section>
+
+      <section class="section" id="any-model" aria-labelledby="any-model-title">
+        <div class="section-heading">
+          <p class="kicker">Model-Agnostic</p>
+          <h2 id="any-model-title">One pipeline, any model</h2>
+          <p>
+            Because the asset is generated as code, the pipeline is not tied to a single backbone &mdash;
+            swap the underlying model and the same generation, compilation, and inspection flow still holds.
+          </p>
+        </div>
+        <figure class="overview-figure">
+          <img
+            src="assets/figures/model-agnostic-pipeline.gif"
+            alt="Nova3D pipeline producing structured 3D assets across different underlying models"
+          >
+        </figure>
       </section>
 
       <section class="section overview-section" aria-labelledby="overview-title">
