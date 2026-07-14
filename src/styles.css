@@ -211,6 +211,40 @@ p {
   border-color: var(--green-dark);
 }
 
+.link-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 44px;
+  padding: 0 22px;
+  border-radius: 999px;
+  background: #2e2e2e;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 14.5px;
+  transition: background 140ms ease, transform 140ms ease;
+}
+
+.link-pill svg {
+  width: 17px;
+  height: 17px;
+  flex: 0 0 auto;
+}
+
+.link-pill:hover {
+  background: #191919;
+  transform: translateY(-1px);
+}
+
+.link-pill.accent {
+  background: var(--green-dark);
+  color: #ffffff;
+}
+
+.link-pill.accent:hover {
+  background: #17492e;
+}
+
 .hero-badge {
   display: inline-flex;
   align-items: center;
@@ -407,96 +441,94 @@ figcaption {
   text-align: center;
 }
 
-.asset-grid {
+.asset-viewer {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 2.6fr) minmax(230px, 1fr);
   gap: 22px;
+  align-items: start;
+  max-width: 1360px;
+  margin: 0 auto;
 }
 
-.asset-card,
-.comparison-card {
+.viewer-stage {
+  margin: 0;
   border: 1px solid var(--panel-line);
   border-radius: 12px;
   background: var(--card);
   color: var(--panel-ink);
   box-shadow: var(--panel-shadow);
-}
-
-.asset-card {
   overflow: hidden;
 }
 
-.asset-media {
-  position: relative;
+.viewer-stage video {
+  width: 100%;
   aspect-ratio: 16 / 10;
-  display: grid;
-  place-items: center;
+  object-fit: contain;
   background:
     linear-gradient(135deg, rgba(98, 185, 0, 0.11), transparent 48%),
     #f6f8f4;
   border-bottom: 1px solid var(--panel-soft-line);
-  overflow: hidden;
 }
 
-.asset-media.video-enabled {
-  cursor: pointer;
-}
-
-.asset-media.video-enabled::after {
-  content: "Hover to play";
-  position: absolute;
-  right: 10px;
-  bottom: 10px;
-  padding: 5px 8px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.86);
-  color: #4d5549;
-  font-size: 11px;
-  font-weight: 700;
-  opacity: 0;
-  transition: opacity 160ms ease;
-  pointer-events: none;
-}
-
-.asset-media.video-enabled:hover::after,
-.asset-media.video-enabled:focus-visible::after {
-  opacity: 1;
-}
-
-.asset-media.video-enabled:focus-visible {
-  outline: 2px solid var(--green);
-  outline-offset: 2px;
-}
-
-.asset-media img,
-.asset-media video {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  grid-area: 1 / 1;
-}
-
-.asset-placeholder {
-  width: 82%;
-  padding: 18px;
-  border: 1px dashed #b8c3b1;
-  border-radius: 10px;
-  color: #6a7465;
-  text-align: center;
-  line-height: 1.45;
-}
-
-.asset-card-body {
+.viewer-stage figcaption {
+  margin: 0;
   padding: 18px 20px 20px;
 }
 
-.asset-card-body h3 {
+.viewer-stage h3 {
   font-size: 21px;
+  color: var(--panel-ink);
 }
 
-.asset-card-body p {
+.viewer-stage p {
   margin-bottom: 0;
   color: var(--panel-muted);
+}
+
+.viewer-rail {
+  display: grid;
+  gap: 10px;
+}
+
+.viewer-thumb {
+  display: grid;
+  grid-template-columns: 88px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+  border: 1px solid var(--panel-line);
+  border-radius: 10px;
+  background: var(--card);
+  color: var(--panel-ink);
+  font: inherit;
+  font-weight: 700;
+  font-size: 14px;
+  text-align: left;
+  cursor: pointer;
+  box-shadow: var(--panel-shadow);
+}
+
+.viewer-thumb img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: contain;
+  border-radius: 6px;
+  background: #f6f8f4;
+}
+
+.viewer-thumb:hover {
+  border-color: var(--green);
+}
+
+.viewer-thumb.active {
+  border-color: var(--green-dark);
+  box-shadow: 0 0 0 1px var(--green-dark);
+  background: #f2f7f0;
+}
+
+.viewer-thumb:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 2px;
 }
 
 .comparison-stack {
@@ -538,6 +570,13 @@ figcaption {
   height: auto;
   background: white;
   border-radius: 8px;
+}
+
+.method-figure figcaption {
+  max-width: 980px;
+  margin: 12px auto 0;
+  color: var(--panel-muted);
+  text-align: center;
 }
 
 .section-heading a {
@@ -597,11 +636,19 @@ figcaption {
     gap: 9px;
   }
 
-  .asset-grid,
+  .asset-viewer,
   .app-cta,
   .articulation-card,
   .code-native-grid {
     grid-template-columns: 1fr;
+  }
+
+  .viewer-rail {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .viewer-thumb {
+    grid-template-columns: 64px minmax(0, 1fr);
   }
 
   .compile-arrow b {

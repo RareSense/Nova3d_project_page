@@ -18,6 +18,7 @@
       <nav aria-label="Page navigation">
         <a href="#abstract">Abstract</a>
         <a href="#code">Code</a>
+        <a href="#method">Method</a>
         <a href="#any-model">Any Model</a>
         <a href="#articulation">Articulation</a>
         <a href="#pbr">PBR Textures</a>
@@ -33,8 +34,25 @@
           Generating structured, editable, constraint-consistent 3D assets as executable programs.
         </p>
         <div class="actions">
-          <a class="button primary" href="https://app.nova3d.xyz/">Open Nova3D App</a>
-          <a class="button" href="#results">Results</a>
+          <a class="link-pill" href="https://github.com/RareSense/Nova3D" target="_blank" rel="noopener">
+            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/>
+            </svg>
+            GitHub
+          </a>
+          <a class="link-pill" href="https://nova3d.xyz/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+              <circle cx="8" cy="8" r="6.6"/>
+              <path d="M1.4 8h13.2M8 1.4c2.3 2.4 2.3 10.8 0 13.2M8 1.4c-2.3 2.4-2.3 10.8 0 13.2"/>
+            </svg>
+            Website
+          </a>
+          <a class="link-pill accent" href="https://app.nova3d.xyz/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3.5 12.5 12 4M5.5 4H12v6.5"/>
+            </svg>
+            Nova3D App
+          </a>
         </div>
         <figure class="hero-teaser">
           <video
@@ -95,6 +113,31 @@ ring   = <span class="tk-f">part</span>(<span class="tk-s">"Focus_Ring"</span>, 
             <figcaption>fujifilm_camera.glb &mdash; the compiled, inspectable artifact</figcaption>
           </figure>
         </div>
+      </section>
+
+      <section class="section" id="method" aria-labelledby="method-title">
+        <div class="section-heading">
+          <p class="kicker">Methodology</p>
+          <h2 id="method-title">Single image &rarr; production 3D asset</h2>
+          <p>
+            One photograph goes in; a runtime-ready, articulated GLB comes out. Perception grounds the
+            build in evidence &mdash; depth, normal, and edge priors plus ViT patch features &mdash; and
+            sampled pixel values are verified before a single line of the build program is written.
+          </p>
+        </div>
+        <figure class="overview-figure method-figure">
+          <img
+            src="assets/figures/method-pipeline.png"
+            alt="Nova3D method overview: input image, prior map extraction, ViT feature encoding, pixel-value verification, program synthesis, deterministic build, real-time agent geometry checks, part structure and articulation, and the final production GLB asset"
+          >
+          <figcaption>
+            Verified evidence is compiled into a build program, and the program is executed
+            deterministically &mdash; same program, same geometry, every time. Autonomous agents inspect the
+            live geometry against the reference and trigger a refine-and-rebuild loop until shape, scale,
+            and parts pass; named parts then receive joints and limits, yielding a production GLB with
+            hierarchy and articulation intact.
+          </figcaption>
+        </figure>
       </section>
 
       <section class="section" id="any-model" aria-labelledby="any-model-title">
@@ -182,10 +225,10 @@ ring   = <span class="tk-f">part</span>(<span class="tk-s">"Focus_Ring"</span>, 
           <p class="kicker">Results</p>
           <h2 id="results-title">Generated asset gallery</h2>
           <p>
-            Selected generated assets with on-card turntable previews.
+            Pick an asset from the list to view its turntable preview.
           </p>
         </div>
-        <div class="asset-grid" id="asset-grid" aria-live="polite"></div>
+        <div class="asset-viewer" id="asset-viewer" aria-live="polite"></div>
       </section>
 
       <section class="app-cta" aria-label="Nova3D app link">

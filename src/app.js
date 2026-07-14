@@ -31,124 +31,69 @@ const showcaseItems = [
   }
 ];
 
-function createMediaElement(item) {
-  const mediaBox = document.createElement("div");
-  mediaBox.className = "asset-media";
-
-  const placeholder = document.createElement("div");
-  placeholder.className = "asset-placeholder";
-  placeholder.textContent = "Preview unavailable";
-
-  mediaBox.append(placeholder);
-
-  fetch(item.media, { method: "HEAD" })
-    .then((response) => {
-      if (!response.ok) return;
-
-      const isVideo = item.media.toLowerCase().endsWith(".mp4");
-
-      if (isVideo) {
-        mediaBox.classList.add("video-enabled");
-        mediaBox.tabIndex = 0;
-
-        const poster = document.createElement("img");
-        poster.src = item.media.replace(/\.mp4$/i, ".jpg");
-        poster.alt = item.title;
-        poster.className = "asset-poster";
-
-        let video = null;
-
-        const showVideo = () => {
-          if (video) return;
-
-          video = document.createElement("video");
-          video.loop = true;
-          video.muted = true;
-          video.playsInline = true;
-          video.preload = "auto";
-          video.src = item.media;
-          video.poster = poster.src;
-
-          video.addEventListener(
-            "loadedmetadata",
-            () => {
-              const seekTime = Number.isFinite(video.duration)
-                ? Math.min(1.2, Math.max(0.35, video.duration * 0.35))
-                : 0.5;
-              video.currentTime = seekTime;
-            },
-            { once: true }
-          );
-          video.addEventListener("canplay", () => video.play().catch(() => {}));
-          video.addEventListener("error", () => {
-            if (video?.parentElement) {
-              video.replaceWith(poster);
-            }
-            video = null;
-          });
-
-          poster.replaceWith(video);
-        };
-
-        const showPoster = () => {
-          if (!video) return;
-          video.pause();
-          video.removeAttribute("src");
-          video.load();
-          if (video.parentElement) {
-            video.replaceWith(poster);
-          }
-          video = null;
-        };
-
-        mediaBox.addEventListener("mouseenter", showVideo);
-        mediaBox.addEventListener("mouseleave", showPoster);
-        mediaBox.addEventListener("focusin", showVideo);
-        mediaBox.addEventListener("focusout", showPoster);
-        mediaBox.addEventListener("click", () => {
-          if (video) {
-            showPoster();
-          } else {
-            showVideo();
-          }
-        });
-        mediaBox.append(poster);
-      } else {
-        const element = document.createElement("img");
-        element.alt = item.title;
-
-        element.addEventListener("error", () => {
-          element.remove();
-          placeholder.hidden = false;
-        });
-
-        element.src = item.media;
-        mediaBox.append(element);
-      }
-      placeholder.hidden = true;
-    })
-    .catch(() => {
-      placeholder.hidden = false;
-    });
-
-  return mediaBox;
+function posterFor(item) {
+  return item.media.replace(/\.mp4$/i, ".jpg");
 }
 
 function initShowcase() {
-  const grid = document.getElementById("asset-grid");
-  if (!grid) return;
+  const viewer = document.getElementById("asset-viewer");
+  if (!viewer) return;
 
-  showcaseItems.forEach((item) => {
-    const card = document.createElement("article");
-    card.className = "asset-card";
+  const stage = document.createElement("figure");
+  stage.className = "viewer-stage";
 
-    const body = document.createElement("div");
-    body.className = "asset-card-body";
-    body.innerHTML = `<h3>${item.title}</h3><p>${item.description}</p>`;
+  const video = document.createElement("video");
+  video.muted = true;
+  video.loop = true;
+  video.playsInline = true;
+  video.autoplay = true;
+  video.preload = "auto";
 
-    card.append(createMediaElement(item), body);
-    grid.append(card);
+  const caption = document.createElement("figcaption");
+  const title = document.createElement("h3");
+  const description = document.createElement("p");
+  caption.append(title, description);
+  stage.append(video, caption);
+
+  const rail = document.createElement("div");
+  rail.className = "viewer-rail";
+  rail.setAttribute("role", "list");
+
+  const buttons = showcaseItems.map((item, index) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "viewer-thumb";
+
+    const thumb = document.createElement("img");
+    thumb.src = posterFor(item);
+    thumb.alt = "";
+    thumb.loading = "lazy";
+
+    const label = document.createElement("span");
+    label.textContent = item.title;
+
+    button.append(thumb, label);
+    button.addEventListener("click", () => select(index));
+    rail.append(button);
+    return button;
   });
+
+  function select(index) {
+    const item = showcaseItems[index];
+    buttons.forEach((button, i) => {
+      button.classList.toggle("active", i === index);
+      button.setAttribute("aria-pressed", String(i === index));
+    });
+
+    video.poster = posterFor(item);
+    video.src = item.media;
+    video.play().catch(() => {});
+    title.textContent = item.title;
+    description.textContent = item.description;
+  }
+
+  viewer.append(stage, rail);
+  select(0);
 }
 
 function initAutoplayVideos() {
