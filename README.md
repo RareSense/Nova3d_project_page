@@ -2,6 +2,8 @@
 
 Static project page for `Nova3D: Code-Native Generation of Programmable 3D Assets`.
 
+**Live project page:** https://raresense.github.io/Nova3d_project_page/
+
 ## Run
 
 From this folder:
