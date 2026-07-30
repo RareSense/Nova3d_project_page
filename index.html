@@ -34,6 +34,13 @@
           Generating structured, editable, constraint-consistent 3D assets as executable programs.
         </p>
         <div class="actions">
+          <a class="link-pill" href="https://arxiv.org/abs/2607.22738" target="_blank" rel="noopener">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 1.5h5l3 3v10H4z"/>
+              <path d="M9 1.5v3h3M6 8h4M6 10.5h4"/>
+            </svg>
+            Paper
+          </a>
           <a class="link-pill" href="https://github.com/RareSense/Nova3D" target="_blank" rel="noopener">
             <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
               <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/>
@@ -70,7 +77,16 @@
       <section class="card abstract-card" id="abstract" aria-labelledby="abstract-title">
         <h2 id="abstract-title">Abstract</h2>
         <p>
-          Current 3D generative models mostly produce a final surface: a visually strong but largely opaque mesh. Yet interactive 3D worlds need more than a surface — they need named parts, an assembly hierarchy, measurable constraints, local edit handles, and joints for articulation. We present Nova3D, a system that generates 3D assets as executable source code; the compiled GLB is treated as the artifact, not the asset. Because the output is a program, semantic handles are present at generation time rather than recovered afterward by segmentation or rigging. We evaluate on Nova3D-Bench, a frozen, spec-grounded benchmark of 54 items across six domains and three difficulty levels with text and image inputs, and compare against commercial, open mesh-native, part-aware, post-hoc-segmentation, code-native, and CAD baselines. Nova3D produces an executable program and a valid artifact for 54/54 items; 100% of its assets expose a parent–child assembly tree, which the mesh-native, CAD, and segmentation baselines do not; it satisfies 51/52 frozen numeric and count constraints (no baseline exceeds 21%); and it passes 14/18 blinded local edits with locality preserved in 18/18. Its geometry is competitive — it wins the structured domains in a pairwise shape-quality tournament and is second only to the strongest mesh-native model — while it openly concedes texture realism to baked-PBR systems. The central result is representational: code-native generation turns a generated 3D object from an opaque surface into a programmable asset that downstream systems can inspect, measure, edit, and animate.
+          Current 3D generative models mostly produce a final surface: a visually strong but largely opaque mesh. Interactive 3D worlds need more than a surface. They need named parts, an assembly hierarchy, measurable constraints, local edit handles, and joints for articulation.
+        </p>
+        <p>
+          We present Nova3D, a system that generates 3D assets as executable Blender source code; the compiled mesh, a binary glTF (GLB), is treated as the artifact, not the asset. Because the output is a program, semantic handles exist at generation time rather than being recovered afterward by segmentation or rigging. We evaluate on Nova3D-Bench, a frozen, spec-grounded benchmark of 54 items across six domains and three difficulty levels with text and image inputs, against eleven baselines in four families (mesh-native, part-structured, code-native, and CAD) plus a same-LLM ablation.
+        </p>
+        <p>
+          Nova3D produces an executable program and a valid artifact for 54/54 items. Every asset exposes named parts organized in a parent-child assembly tree; no mesh-native, CAD, or segmentation baseline exposes either. It satisfies 51/52 prompt-stated numeric and count constraints (best baseline: 11/52), passes 14/18 blinded local edits with locality preserved in 18/18, and articulates 59 joints across 12 assets at 98.3% geometric validity, where every baseline exposes zero native joints.
+        </p>
+        <p>
+          Its geometry is competitive: it wins the structured domains in a pairwise shape-quality tournament and is second only to the strongest mesh-native model, while conceding texture realism to baked-PBR systems. The central result is representational: code-native generation turns a generated 3D object from an opaque surface into a programmable asset that downstream systems can inspect, measure, edit, and animate.
         </p>
       </section>
 
