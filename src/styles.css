@@ -395,15 +395,9 @@ p {
 }
 
 .abstract-card p {
-  max-width: 920px;
-  margin: 0 auto 1em;
+  max-width: 1100px;
+  margin-inline: auto;
   color: var(--panel-muted);
-  text-align: center;
-  line-height: 1.75;
-}
-
-.abstract-card p:last-child {
-  margin-bottom: 0;
 }
 
 .app-cta {
