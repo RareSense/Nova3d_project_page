@@ -114,5 +114,56 @@ function initAutoplayVideos() {
   });
 }
 
+function initComparisonSliders() {
+  document.querySelectorAll("[data-comparison-slider]").forEach((slider) => {
+    const input = slider.querySelector(".comparison-slider-input");
+    if (!input) return;
+
+    const updatePosition = () => {
+      const position = Number(input.value);
+      slider.style.setProperty("--comparison-position", `${position}%`);
+      input.setAttribute("aria-valuetext", `${position}% textured, ${100 - position}% wireframe`);
+    };
+
+    const updateFromPointer = (event) => {
+      const bounds = slider.getBoundingClientRect();
+      const position = ((event.clientX - bounds.left) / bounds.width) * 100;
+      input.value = String(Math.min(100, Math.max(0, position)));
+      updatePosition();
+    };
+
+    let isDragging = false;
+
+    slider.addEventListener("pointerdown", (event) => {
+      if (event.pointerType === "mouse" && event.button !== 0) return;
+      isDragging = true;
+      slider.classList.add("is-dragging");
+      slider.setPointerCapture(event.pointerId);
+      input.focus({ preventScroll: true });
+      updateFromPointer(event);
+    });
+
+    slider.addEventListener("pointermove", (event) => {
+      if (isDragging) updateFromPointer(event);
+    });
+
+    const stopDragging = (event) => {
+      if (!isDragging) return;
+      isDragging = false;
+      slider.classList.remove("is-dragging");
+      if (slider.hasPointerCapture(event.pointerId)) {
+        slider.releasePointerCapture(event.pointerId);
+      }
+    };
+
+    slider.addEventListener("pointerup", stopDragging);
+    slider.addEventListener("pointercancel", stopDragging);
+
+    input.addEventListener("input", updatePosition);
+    updatePosition();
+  });
+}
+
 initShowcase();
 initAutoplayVideos();
+initComparisonSliders();

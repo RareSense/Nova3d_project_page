@@ -8,7 +8,7 @@
       name="description"
       content="Nova3D research project page for code-native generation of programmable 3D assets."
     >
-    <link rel="stylesheet" href="src/styles.css">
+    <link rel="stylesheet" href="src/styles.css?v=20260802-2">
   </head>
   <body>
     <header class="topbar">
@@ -184,7 +184,7 @@ ring   = <span class="tk-f">part</span>(<span class="tk-s">"Focus_Ring"</span>, 
         <article class="articulation-card">
           <div>
             <p class="kicker">Articulation</p>
-            <h2 id="articulation-title">Robotic hand articulation preview</h2>
+            <h2 id="articulation-title">Articulation preview</h2>
             <p>
               Joint-aware assets can expose editable motion handles while preserving the original generated geometry.
             </p>
@@ -207,7 +207,7 @@ ring   = <span class="tk-f">part</span>(<span class="tk-s">"Focus_Ring"</span>, 
         <article class="articulation-card">
           <div>
             <p class="kicker">PBR Textures</p>
-            <h2 id="pbr-title">Textured G-Wagon preview</h2>
+            <h2 id="pbr-title">PBR texture preview</h2>
             <p>
               Physically based material previews show how generated assets can carry richer surface detail while
               retaining an inspectable asset structure.
@@ -252,28 +252,39 @@ ring   = <span class="tk-f">part</span>(<span class="tk-s">"Focus_Ring"</span>, 
           <p class="kicker">Comparison</p>
           <h2 id="comparison-title">Visual comparison</h2>
           <p>
-            Side-by-side textured and wireframe outputs for the same object categories.
+            Drag the slider to compare textured and wireframe outputs for the same object categories.
           </p>
         </div>
 
         <div class="comparison-stack">
-          <figure class="comparison-figure">
-            <img
-              src="assets/figures/comparison-textured.png"
-              alt="Textured renders comparing Nova3D with Meshy, TRELLIS.2, and TripoSG"
-            >
+          <figure class="comparison-figure comparison-slider">
+            <div class="comparison-slider-frame" data-comparison-slider>
+              <img
+                class="comparison-slider-base"
+                src="assets/figures/comparison-wireframe.png"
+                alt="Wireframe comparison of Nova3D with Meshy, TRELLIS.2, and TripoSG"
+              >
+              <div class="comparison-slider-reveal" aria-hidden="true">
+                <img src="assets/figures/comparison-textured.png" alt="">
+              </div>
+              <input
+                class="comparison-slider-input"
+                type="range"
+                min="0"
+                max="100"
+                value="28"
+                aria-label="Reveal textured comparison"
+              >
+              <span class="comparison-slider-label comparison-slider-label-textured" aria-hidden="true">Textured</span>
+              <span class="comparison-slider-label comparison-slider-label-wireframe" aria-hidden="true">Wireframe</span>
+              <span class="comparison-slider-divider" aria-hidden="true"></span>
+              <span class="comparison-slider-handle" aria-hidden="true">
+                <strong>DRAG</strong>
+                <span>&#8596;</span>
+              </span>
+            </div>
             <figcaption>
-              Textured outputs shown side by side.
-            </figcaption>
-          </figure>
-
-          <figure class="comparison-figure">
-            <img
-              src="assets/figures/comparison-wireframe.png"
-              alt="Wireframe comparison of Nova3D with Meshy, TRELLIS.2, and TripoSG"
-            >
-            <figcaption>
-              Wireframe view showing topology and part-level structure.
+              <strong>Click or drag anywhere on the image</strong> to reveal the textured output. The final wireframe view stays visible by default.
             </figcaption>
           </figure>
         </div>
@@ -288,6 +299,6 @@ ring   = <span class="tk-f">part</span>(<span class="tk-s">"Focus_Ring"</span>, 
       <a href="https://app.nova3d.xyz/">Nova3D App</a>
     </footer>
 
-    <script src="src/app.js"></script>
+    <script src="src/app.js?v=20260802-2"></script>
   </body>
 </html>
