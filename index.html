@@ -8,7 +8,7 @@
       name="description"
       content="Nova3D research project page for code-native generation of programmable 3D assets."
     >
-    <link rel="stylesheet" href="src/styles.css?v=20260806-1">
+    <link rel="stylesheet" href="src/styles.css?v=20260806-2">
   </head>
   <body>
     <header class="topbar">
@@ -82,10 +82,10 @@
 
       <section class="section code-native-section" id="code" aria-labelledby="code-title">
         <div class="section-heading">
-          <p class="kicker">Code-Native</p>
-          <h2 id="code-title">The asset is a program, not a mesh</h2>
+          <h2 class="kicker" id="code-title">Code-Native</h2>
+          <h3>The asset is a program, not a mesh</h3>
           <p>
-            Nova3D writes an executable program &mdash; named parts, real dimensions, and the
+            Nova3D writes an executable program; named parts, real dimensions, and the
             assembly tree exist in the source from the first token. The GLB is just the compiled artifact.
           </p>
         </div>
@@ -116,18 +116,18 @@ ring   = <span class="tk-f">part</span>(<span class="tk-s">"Focus_Ring"</span>, 
           </div>
           <figure class="code-result">
             <video autoplay muted loop playsinline preload="auto" src="assets/figures/camera-turntable.mp4"></video>
-            <figcaption>fujifilm_camera.glb &mdash; the compiled, inspectable artifact</figcaption>
+            <figcaption>fujifilm_camera.glb: the compiled, inspectable artifact</figcaption>
           </figure>
         </div>
       </section>
 
       <section class="section" id="method" aria-labelledby="method-title">
         <div class="section-heading">
-          <p class="kicker">Methodology</p>
-          <h2 id="method-title">Single image &rarr; production 3D asset</h2>
+          <h2 class="kicker" id="method-title">Methodology</h2>
+          <h3>Single image &rarr; production 3D asset</h3>
           <p>
             One photograph goes in; a runtime-ready, articulated GLB comes out. Perception grounds the
-            build in evidence &mdash; depth, normal, and edge priors plus ViT patch features &mdash; and
+            build in evidence, depth, normal, and edge priors plus ViT patch features, and
             sampled pixel values are verified before a single line of the build program is written.
           </p>
         </div>
@@ -138,7 +138,7 @@ ring   = <span class="tk-f">part</span>(<span class="tk-s">"Focus_Ring"</span>, 
           >
           <figcaption>
             Verified evidence is compiled into a build program, and the program is executed
-            deterministically &mdash; same program, same geometry, every time. Autonomous agents inspect the
+            deterministically: same program, same geometry, every time. Autonomous agents inspect the
             live geometry against the reference and trigger a refine-and-rebuild loop until shape, scale,
             and parts pass; named parts then receive joints and limits, yielding a production GLB with
             hierarchy and articulation intact.
@@ -148,10 +148,10 @@ ring   = <span class="tk-f">part</span>(<span class="tk-s">"Focus_Ring"</span>, 
 
       <section class="section" id="any-model" aria-labelledby="any-model-title">
         <div class="section-heading">
-          <p class="kicker">Model-Agnostic</p>
-          <h2 id="any-model-title">One pipeline, any model</h2>
+          <h2 class="kicker" id="any-model-title">Model-Agnostic</h2>
+          <h3>One pipeline, any model</h3>
           <p>
-            Because the asset is generated as code, the pipeline is not tied to a single backbone &mdash;
+            Because the asset is generated as code, the pipeline is not tied to a single backbone;
             swap the underlying model and the same generation, compilation, and inspection flow still holds.
           </p>
         </div>
@@ -179,57 +179,57 @@ ring   = <span class="tk-f">part</span>(<span class="tk-s">"Focus_Ring"</span>, 
         </figure>
       </section>
 
-      <section class="section articulation-section" id="articulation" aria-labelledby="articulation-title">
-        <article class="articulation-card">
-          <div>
-            <p class="kicker">Articulation</p>
-            <h2 id="articulation-title">Articulation preview</h2>
-            <p>
-              Joint-aware assets can expose editable motion handles while preserving the original generated geometry.
-            </p>
-          </div>
-          <video
-            autoplay
-            muted
-            loop
-            playsinline
-            preload="auto"
-            data-autoplay-video
-            data-start-time="0.8"
-            poster="assets/figures/articulation-robotic-hand.jpg"
-            src="assets/figures/articulation-robotic-hand.mp4"
-          ></video>
-        </article>
-      </section>
+      <div class="feature-preview-grid">
+        <section class="section articulation-section" id="articulation" aria-labelledby="articulation-title">
+          <article class="articulation-card">
+            <div>
+              <h2 class="kicker" id="articulation-title">Articulation preview</h2>
+              <p>
+                Joint-aware assets can expose editable motion handles while preserving the original generated geometry.
+              </p>
+            </div>
+            <video
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="auto"
+              data-autoplay-video
+              data-start-time="0.8"
+              poster="assets/figures/articulation-robotic-hand.jpg"
+              src="assets/figures/articulation-robotic-hand.mp4"
+            ></video>
+          </article>
+        </section>
 
-      <section class="section pbr-section" id="pbr" aria-labelledby="pbr-title">
-        <article class="articulation-card">
-          <div>
-            <p class="kicker">PBR Textures</p>
-            <h2 id="pbr-title">PBR texture preview</h2>
-            <p>
-              Physically based material previews show how generated assets can carry richer surface detail while
-              retaining an inspectable asset structure.
-            </p>
-          </div>
-          <video
-            autoplay
-            muted
-            loop
-            playsinline
-            preload="auto"
-            data-autoplay-video
-            data-start-time="0.8"
-            poster="assets/figures/pbr-textured-g-wagon.jpg"
-            src="assets/figures/pbr-textured-g-wagon.mp4"
-          ></video>
-        </article>
-      </section>
+        <section class="section pbr-section" id="pbr" aria-labelledby="pbr-title">
+          <article class="articulation-card">
+            <div>
+              <h2 class="kicker" id="pbr-title">PBR texture preview</h2>
+              <p>
+                Physically based material previews show how generated assets can carry richer surface detail while
+                retaining an inspectable asset structure.
+              </p>
+            </div>
+            <video
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="auto"
+              data-autoplay-video
+              data-start-time="0.8"
+              poster="assets/figures/pbr-textured-g-wagon.jpg"
+              src="assets/figures/pbr-textured-g-wagon.mp4"
+            ></video>
+          </article>
+        </section>
+      </div>
 
       <section class="section" id="results" aria-labelledby="results-title">
         <div class="section-heading">
-          <p class="kicker">Results</p>
-          <h2 id="results-title">Generated asset gallery</h2>
+          <h2 class="kicker" id="results-title">Results</h2>
+          <h3>Generated asset gallery</h3>
           <p>
             Pick an asset from the list to view its turntable preview.
           </p>
@@ -237,19 +237,9 @@ ring   = <span class="tk-f">part</span>(<span class="tk-s">"Focus_Ring"</span>, 
         <div class="asset-viewer" id="asset-viewer" aria-live="polite"></div>
       </section>
 
-      <section class="app-cta" aria-label="Nova3D app link">
-        <div>
-          <p class="kicker">Try it</p>
-          <h2>Open the Nova3D app</h2>
-          <p>Generate, inspect, and export structured 3D assets directly from the hosted Nova3D app.</p>
-        </div>
-        <a class="button primary" href="https://app.nova3d.xyz/">Launch app</a>
-      </section>
-
       <section class="section" id="comparison" aria-labelledby="comparison-title">
         <div class="section-heading">
-          <p class="kicker">Comparison</p>
-          <h2 id="comparison-title">Visual comparison</h2>
+          <h2 class="kicker" id="comparison-title">Comparison</h2>
           <p>
             Drag the slider to compare textured and wireframe outputs for the same object categories.
           </p>
@@ -287,6 +277,31 @@ ring   = <span class="tk-f">part</span>(<span class="tk-s">"Focus_Ring"</span>, 
             </figcaption>
           </figure>
         </div>
+      </section>
+
+      <section class="section parts-section" id="parts" aria-labelledby="parts-title">
+        <div class="section-heading">
+          <h2 class="kicker" id="parts-title">Built as parts, not segmented after the fact</h2>
+        </div>
+        <figure class="overview-figure parts-figure">
+          <div class="parts-copy parts-copy-nova3d">
+            <p>
+              Nova3D never builds a fused mesh in the first place; every component is generated as its own named,
+              watertight part, so any piece can be selected, retextured, replaced, or rigged on its own.
+            </p>
+          </div>
+          <img
+            src="assets/figures/segmentation-explode.gif"
+            alt="Four assets exploded into their parts"
+          >
+          <div class="parts-copy parts-copy-others">
+            <p>
+              The others can only approximate this afterward: PartCrafter returns a handful of unnamed chunks,
+              and CubePart must be handed the part names, then slices a finished mesh into capped, approximate
+              regions.
+            </p>
+          </div>
+        </figure>
       </section>
     </main>
 
