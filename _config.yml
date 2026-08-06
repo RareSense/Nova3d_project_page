@@ -1,0 +1,11 @@
+exclude:
+  - assets/brand/nova3d-logo-full.png
+  - assets/brand/nova3d-logo.svg
+  - assets/figures/b.gif
+  - assets/figures/b.mp4
+  - assets/figures/generation-overview-original-backup.png
+  - assets/showcase/README.md
+  - assets/showcase/camera.jpg
+  - assets/showcase/camera.mp4
+  - assets/showcase/futuristic-car.jpg
+  - assets/showcase/futuristic-car.mp4
