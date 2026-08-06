@@ -3,6 +3,8 @@ exclude:
   - assets/brand/nova3d-logo.svg
   - assets/figures/b.gif
   - assets/figures/b.mp4
+  - assets/figures/drill_machine.gif
+  - assets/figures/escalator.gif
   - assets/figures/generation-overview-original-backup.png
   - assets/showcase/README.md
   - assets/showcase/camera.jpg
